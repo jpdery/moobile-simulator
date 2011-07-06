@@ -1,0 +1,205 @@
+/* Body
+-----------------------------------------------------------------------------*/
+
+body {
+	background: #424242;
+	color: #fefefe;
+	font-family: "Helvetica Neue", Arial;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0px;
+	padding: 0px;
+}
+
+#wrap {
+	min-width: 1108px;	
+}
+
+/* Navigation
+-----------------------------------------------------------------------------*/
+
+#nav {
+	background: url(../images/nav-bg.png) repeat-x;
+	height: 42px;
+	line-height: 40px;
+	margin-bottom: 40px;
+}
+
+#nav li {
+	background: url(../images/nav-border.png) no-repeat top right;
+	cursor: pointer;
+	color: #acacac;
+	float: left;
+	list-style: none;
+	list-style-position: outside;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 25px;
+	padding-right: 25px;	
+}
+
+#nav li:hover {
+	background-color: #212121;
+	color: #ffffff;
+}
+
+#nav li .option {
+	-webkit-border-radius: 8px;
+	background: #000000;
+	display: inline;
+	font-size: 11px;
+	font-weight: normal;
+	padding: 3px;
+}
+
+#nav li .option:hover {
+	background: #333333;
+}
+
+#nav li .option.current {
+	background: #666666;
+	color: #ffffff;
+}
+
+/* Device 
+-----------------------------------------------------------------------------*/
+
+#device {
+	-webkit-box-sizing: border-box;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#device [data-axis=s],
+#device [data-axis=r],
+#device #window,
+#device #content,
+#device #bar,
+#device #app {
+	-webkit-transform-origin: 50% 50%;
+	-webkit-transition-property: all;
+	-webkit-transition-duration: 0ms;
+	-webkit-transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 1);	
+	-webkit-backface-visibility: hidden;
+}
+
+#device.animated [data-axis=s],
+#device.animated [data-axis=r],
+#device.animated #window,
+#device.animated #content,
+#device.animated #bar,
+#device.animated #app {
+	-webkit-transition-duration: 350ms;	
+}
+
+#device [data-axis=r].portrait  { -webkit-transform: rotate(0deg);  }
+#device [data-axis=r].landscape { -webkit-transform: rotate(90deg); }
+
+#device [data-axis=s].normal { -webkit-transform: translateY(0px)	 scale(1.00); }
+#device [data-axis=s].medium { -webkit-transform: translateY(-12.5%) scale(0.75); }
+#device [data-axis=s].small  { -webkit-transform: translateY(-25%)	 scale(0.50); }
+
+#device [data-axis=r].portrait #content { 
+	-webkit-transform: rotate(0deg);
+	-webkit-transition-delay: 350ms;
+}
+
+#device [data-axis=r].landscape #content { 
+	-webkit-transform: rotate(-90deg);
+	-webkit-transition-delay: 0ms;
+}
+
+#device.animated [data-axis=r].landscape #content { 
+	-webkit-transition-delay: 350ms;
+}
+
+#loader {
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+/* Bar
+-----------------------------------------------------------------------------*/
+
+#bar {
+	-webkit-box-sizing: border-box;
+	background: rgba(0, 0, 0, 0.6);
+	background: #000000;
+	color: rgba(255, 255, 255, 0.75);
+	font-size: 14px;
+	font-weight: normal;
+	height: 20px;
+	line-height: 20px;
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.75);
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+/* App
+-----------------------------------------------------------------------------*/
+
+#app {
+	background: #333333;
+}
+
+/* iPad
+-----------------------------------------------------------------------------*/
+
+#device.ipad {	
+	height: 1108px;
+	width: 852px;
+}
+
+#device.ipad #window {
+	-webkit-box-sizing: border-box;
+	background: url(../images/frame-ipad.png);
+	height: 1108px;
+	padding: 42px;
+	width: 852px;	
+}
+
+#device.ipad [data-axis=r].portrait #content {
+	-webkit-transform: rotate(0deg) translateX(0px) translateY(0px);
+	-webkit-transition-delay: 350ms;	
+	height: 1004px;
+	width: 768px;
+}
+
+#device.ipad [data-axis=r].landscape #content {
+	-webkit-transform: rotate(-90deg) translateX(-138px) translateY(-138px);
+	height: 748px;
+	width: 1024px;
+}
+
+/* iPhone
+-----------------------------------------------------------------------------*/
+
+#device.iphone {	
+	height: 716px;
+	width: 368px;
+}
+
+#device.iphone #window {
+	-webkit-box-sizing: border-box;
+	background: url(../images/frame-iphone.png);
+	height: 716px;
+	padding-top: 118px;
+	padding-right: 24px;
+	padding-left: 24px;
+	padding-bottom: 118px;		
+	width: 368px;	
+}
+
+#device.iphone [data-axis=r].portrait #content {
+	-webkit-transform: rotate(0deg) translateX(0px) translateY(0px);
+	-webkit-transition-delay: 350ms;	
+	height: 460px;
+	width: 320px;
+}
+
+#device.iphone [data-axis=r].landscape #content {
+	-webkit-transform: rotate(-90deg) translateX(-90px) translateY(-90px);
+	height: 300px;
+	width: 480px;
+}

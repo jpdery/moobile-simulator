@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Moobile Simulator</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/styles.css" />
+		<script type="text/javascript" src="js/moobile-simulator.js"></script>
+	</head>
+	<body>
+	
+	<script type="text/javascript">
+	// <![CDATA[
+		
+		(function() {
+			
+			var defaultZoom = 'normal';
+			var defaultOrientation = 'portrait';
+			var defaultDevice = 'iphone';
+			
+			var device = null;
+			
+			var currentZoomOption = null;
+			var currentOrientationOption = null;
+			var currentDeviceOption = null;
+		
+			Selector.apply({
+				
+				/**
+				 * Initialize the simulated device.
+				 */
+				'#device': function(el) {
+					device = new Moobile.Device(el);
+					device.enableAnimations.delay(50, device);
+				},
+				
+				/**
+				 * Defines the default zoom level.
+				 */
+				'#device-zoom': function(el) {
+					var zoom = Cookie.read('zoom') || defaultZoom;
+					currentZoomOption = el.getElement('[data-value=' + zoom + ']');
+					currentZoomOption.addClass('current');
+					device.zoom(zoom);
+				},
+
+				/**
+				 * Define de default orientation.
+				 */
+				'#device-orientation': function(el) {
+					var orientation = Cookie.read('orientation') || defaultOrientation;
+					currentOrientationOption = el.getElement('[data-value=' + orientation + ']');
+					currentOrientationOption.addClass('current');
+					device.orient(orientation);
+				},
+				
+				/**
+				 * Define the default device.
+				 */
+				'#device-type': function(el) {
+					var type = Cookie.read('device') || defaultDevice;
+					currentDeviceOption = el.getElement('[data-value=' + type + ']');
+					currentDeviceOption.addClass('current');
+					device.use(type);
+				},
+
+				/**
+				 * Define the default app.
+				 */
+				'#device-open': function(el) {
+					var app = Cookie.read('app')
+					if (app) device.load(app);
+				},
+				
+				/**
+				 * Change the zoom level. Once changed it will be saved in 
+				 * cookies allowing the user to get back to this level after
+				 * refreshing the browser.
+				 */
+				'#device-zoom .option::click': function(el) {					
+					var zoom = el.get('data-value');
+					device.zoom(zoom);
+					Cookie.write('zoom', zoom);
+					
+					// update the buttons
+					currentZoomOption.removeClass('current');
+					currentZoomOption = el;
+					currentZoomOption.addClass('current');					
+				},
+
+				/**
+				 * Change the orientation. Once changed it will be saved in 
+				 * cookies allowing the user to get back to this orientation 
+				 * after refreshing the browser.
+				 */
+				'#device-orientation .option::click': function(el) {					
+					var orientation = el.get('data-value');
+					device.orient(orientation);
+					Cookie.write('orientation', orientation);
+					
+					// update the buttons
+					currentZoomOption.removeClass('current');
+					currentZoomOption = el;
+					currentZoomOption.addClass('current');							
+				},
+
+				/**
+				 * Change the device. Once changed it will be saved in 
+				 * cookies allowing the user to get back to this device 
+				 * after refreshing the browser.
+				 */
+				'#device-type .option::click': function(el) {					
+					var type = el.get('data-value');
+					device.use(type);
+					Cookie.write('device', type);
+					
+					// update the buttons
+					currentDeviceOption.removeClass('current');
+					currentDeviceOption = el;
+					currentDeviceOption.addClass('current');							
+				},
+				
+				/**
+				 * Load an app. The app will be saved in cookies allowing the 
+				 * user to get back to this app after refreshing the browser.
+				 */				
+				'#device-open::click': function() {
+					var app = prompt('Enter the URI of the app to simulate:');
+					device.load(app);
+					Cookie.write('app', app);
+				}
+
+			});			
+			
+		})();
+			
+	// "]]>
+	</script>
+		
+	<div id="wrap">
+	
+		<nav id="nav">
+			
+			<ul>
+				<li id="device-zoom">
+					Zoom:
+					<span class="option" data-value="normal">Normal</span>
+					<span class="option" data-value="medium">Medium</span>
+					<span class="option" data-value="small">Small</span>
+				</li>
+				<li id="device-orientation">
+					Orientation:
+					<span class="option" data-value="portrait">Portrait</span>
+					<span class="option" data-value="landscape">Landscape</span>
+				</li>
+				<li id="device-type">
+					Device:
+					<span class="option" data-value="iphone">iPhone</span>
+					<span class="option" data-value="ipad">iPad</span>
+				</li>
+				<li id="device-open">Open</li>
+			</ul>
+			
+		</nav>
+			
+		<div id="device">
+			
+			<div data-axis="s">
+			<div data-axis="r">
+				
+				<div id="window">
+					<div id="content">
+						<div id="bar">Moobile Simulator</div>
+						<div id="app">
+							<iframe id="loader" frameborder="0"></iframe>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			</div>			
+		</div>
+		
+	</div>
+
+	</body>
+</html>
