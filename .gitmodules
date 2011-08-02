@@ -13,3 +13,7 @@
 [submodule "mootools-extras"]
 	path = Vendor/mootools-extras
 	url = git://github.com/jpdery/mootools-extras.git
+
+[submodule "mootools-class-extras"]
+	path = Vendor/mootools-class-extras
+	url = git://github.com/cpojer/mootools-class-extras.git
