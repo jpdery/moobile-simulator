@@ -12,7 +12,7 @@ body {
 }
 
 #wrap {
-	min-width: 1108px;	
+	min-width: 1108px;
 }
 
 /* Navigation
@@ -25,7 +25,7 @@ body {
 	margin-bottom: 40px;
 }
 
-#nav li {
+#nav > ul > li {
 	background: url(../images/nav-border.png) no-repeat top right;
 	cursor: pointer;
 	color: #acacac;
@@ -35,15 +35,15 @@ body {
 	height: 40px;
 	line-height: 40px;
 	padding-left: 25px;
-	padding-right: 25px;	
+	padding-right: 25px;
 }
 
-#nav li:hover {
+#nav > ul > li:hover {
 	background-color: #212121;
 	color: #ffffff;
 }
 
-#nav li .option {
+#nav > ul > li .option {
 	-webkit-border-radius: 8px;
 	background: #000000;
 	display: inline;
@@ -52,16 +52,54 @@ body {
 	padding: 3px;
 }
 
-#nav li .option:hover {
+#nav > ul > li .option:hover {
 	background: #333333;
 }
 
-#nav li .option.current {
+#nav > ul >  li .option.current {
 	background: #666666;
 	color: #ffffff;
 }
 
-/* Device 
+#nav > ul > li .apps {
+	-webkit-border-bottom-right-radius: 8px;
+	-webkit-border-bottom-left-radius: 8px;
+	-webkit-box-shadow: 0px 5px 15px 5px #222222;
+	background: rgba(51, 51, 51, 0.9);
+	display: none;
+	margin-left: -25px;
+	position: relative;
+	z-index: 9999;
+}
+
+#nav > ul > li:hover .apps {
+	display: block;
+	position: absolute;
+}
+
+#nav > ul > li:hover .apps li {
+	border: none;
+	border-top: 1px solid rgba(255, 255, 255, 0.05);
+	float: none;
+	font-size: 13px;
+	font-weight: bold;
+	list-style: none;
+	min-width: 150px;
+	padding: 0px;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+#nav > ul > li:hover .apps li:first-child {
+	border: none;
+}
+
+#nav > ul > li:hover .apps li:hover {
+	background: #666666;
+	color: #ffffff;
+}
+
+/* Device
 -----------------------------------------------------------------------------*/
 
 #device {
@@ -79,7 +117,7 @@ body {
 	-webkit-transform-origin: 50% 50%;
 	-webkit-transition-property: all;
 	-webkit-transition-duration: 0ms;
-	-webkit-transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 1);	
+	-webkit-transition-timing-function: cubic-bezier(0.5, 0.1, 0.5, 1);
 	-webkit-backface-visibility: hidden;
 }
 
@@ -89,7 +127,7 @@ body {
 #device.animated #content,
 #device.animated #bar,
 #device.animated #app {
-	-webkit-transition-duration: 350ms;	
+	-webkit-transition-duration: 350ms;
 }
 
 #device [data-axis=r].portrait  { -webkit-transform: rotate(0deg);  }
@@ -99,17 +137,17 @@ body {
 #device [data-axis=s].medium { -webkit-transform: translateY(-12.5%) scale(0.75); }
 #device [data-axis=s].small  { -webkit-transform: translateY(-25%)	 scale(0.50); }
 
-#device [data-axis=r].portrait #content { 
+#device [data-axis=r].portrait #content {
 	-webkit-transform: rotate(0deg);
 	-webkit-transition-delay: 350ms;
 }
 
-#device [data-axis=r].landscape #content { 
+#device [data-axis=r].landscape #content {
 	-webkit-transform: rotate(-90deg);
 	-webkit-transition-delay: 0ms;
 }
 
-#device.animated [data-axis=r].landscape #content { 
+#device.animated [data-axis=r].landscape #content {
 	-webkit-transition-delay: 350ms;
 }
 
@@ -146,7 +184,7 @@ body {
 /* iPad
 -----------------------------------------------------------------------------*/
 
-#device.ipad {	
+#device.ipad {
 	height: 1108px;
 	width: 852px;
 }
@@ -156,12 +194,12 @@ body {
 	background: url(../images/frame-ipad.png);
 	height: 1108px;
 	padding: 42px;
-	width: 852px;	
+	width: 852px;
 }
 
 #device.ipad [data-axis=r].portrait #content {
 	-webkit-transform: rotate(0deg) translateX(0px) translateY(0px);
-	-webkit-transition-delay: 350ms;	
+	-webkit-transition-delay: 350ms;
 	height: 1004px;
 	width: 768px;
 }
@@ -175,7 +213,7 @@ body {
 /* iPhone
 -----------------------------------------------------------------------------*/
 
-#device.iphone {	
+#device.iphone {
 	height: 716px;
 	width: 368px;
 }
@@ -187,13 +225,13 @@ body {
 	padding-top: 118px;
 	padding-right: 24px;
 	padding-left: 24px;
-	padding-bottom: 118px;		
-	width: 368px;	
+	padding-bottom: 118px;
+	width: 368px;
 }
 
 #device.iphone [data-axis=r].portrait #content {
 	-webkit-transform: rotate(0deg) translateX(0px) translateY(0px);
-	-webkit-transition-delay: 350ms;	
+	-webkit-transition-delay: 350ms;
 	height: 460px;
 	width: 320px;
 }
