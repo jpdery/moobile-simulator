@@ -162,9 +162,10 @@ body {
 
 #bar {
 	-webkit-box-sizing: border-box;
-	background: rgba(0, 0, 0, 0.6);
-	background: #000000;
+	-webkit-box-orient: horizontal;
+	background: url(../images/bar-bg.png) repeat-x;
 	color: rgba(255, 255, 255, 0.75);
+	display: -webkit-box;
 	font-size: 14px;
 	font-weight: normal;
 	height: 20px;
@@ -172,6 +173,25 @@ body {
 	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.75);
 	padding-left: 3px;
 	padding-right: 3px;
+}
+
+#bar-lf {
+	-webkit-box-flex: 0;
+	background: url(../images/bar-lf.png) no-repeat;
+	height: 20px;
+	width: 90px;
+}
+#bar-rg {
+	-webkit-box-flex: 0;
+	background: url(../images/bar-rg.png) no-repeat;
+	height: 20px;
+	width: 90px;	
+}
+
+#bar-ct {
+	-webkit-box-flex: 1;
+	background: url(../images/bar-ct.png) no-repeat center center;
+	height: 20px;
 }
 
 /* App
