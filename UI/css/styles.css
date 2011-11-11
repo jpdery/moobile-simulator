@@ -56,7 +56,7 @@ body {
 	background: #333333;
 }
 
-#nav > ul >  li .option.current {
+#nav > ul >	 li .option.current {
 	background: #666666;
 	color: #ffffff;
 }
@@ -112,7 +112,6 @@ body {
 #device [data-axis=r],
 #device #window,
 #device #content,
-#device #bar,
 #device #app {
 	-webkit-transform-origin: 50% 50%;
 	-webkit-transition-property: all;
@@ -130,12 +129,12 @@ body {
 	-webkit-transition-duration: 350ms;
 }
 
-#device [data-axis=r].portrait  { -webkit-transform: rotate(0deg);  }
+#device [data-axis=r].portrait	{ -webkit-transform: rotate(0deg);	}
 #device [data-axis=r].landscape { -webkit-transform: rotate(90deg); }
 
 #device [data-axis=s].normal { -webkit-transform: translateY(0px)	 scale(1.00); }
 #device [data-axis=s].medium { -webkit-transform: translateY(-12.5%) scale(0.75); }
-#device [data-axis=s].small  { -webkit-transform: translateY(-25%)	 scale(0.50); }
+#device [data-axis=s].small	 { -webkit-transform: translateY(-25%)	 scale(0.50); }
 
 #device [data-axis=r].portrait #content {
 	-webkit-transform: rotate(0deg);
@@ -161,37 +160,110 @@ body {
 -----------------------------------------------------------------------------*/
 
 #bar {
-	-webkit-box-sizing: border-box;
-	-webkit-box-orient: horizontal;
-	background: url(../images/bar-bg.png) repeat-x;
-	color: rgba(255, 255, 255, 0.75);
-	display: -webkit-box;
-	font-size: 14px;
-	font-weight: normal;
+    position: relative;
+    
+	display: block;
 	height: 20px;
-	line-height: 20px;
-	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.75);
-	padding-left: 3px;
-	padding-right: 3px;
+	width: 100%;
 }
 
-#bar-lf {
-	-webkit-box-flex: 0;
-	background: url(../images/bar-lf.png) no-repeat;
+#bar #bar-lf {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+	width: 52px;
 	height: 20px;
-	width: 90px;
-}
-#bar-rg {
-	-webkit-box-flex: 0;
-	background: url(../images/bar-rg.png) no-repeat;
-	height: 20px;
-	width: 90px;	
+	
+	-moz-background-size: 52px, 20px;
+	-webkit-background-size: 52px, 20px;
+	-o-background-size: 52px, 20px;
+	background-size: 52px, 20px;
 }
 
-#bar-ct {
-	-webkit-box-flex: 1;
-	background: url(../images/bar-ct.png) no-repeat center center;
+#bar #bar-ct {
+    font-size: 14px;
+    font-family: HelveticaNeue-Bold, "Helvetica Neue Bold";
+    color: black;
+	line-height: 18px;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    
+    text-shadow: 0px 1px 1px white;
+}
+
+#bar #bar-rg {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+	width: 27px;
 	height: 20px;
+	
+	-moz-background-size: 27px, 20px;
+	-webkit-background-size: 27px, 20px;
+	-o-background-size: 27px, 20px;
+	background-size: 27px, 20px;
+}
+
+#window.full-size #bar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+}
+
+/* Default */
+
+#bar.default {
+	background: url(../images/bars/default_bg.png) repeat-x;
+	
+	-moz-background-size: 1px, 20px;
+	-webkit-background-size: 1px, 20px;
+	-o-background-size: 1px, 20px;
+	background-size: 1px, 20px;
+}
+
+#bar.default #bar-lf {
+	background: url(../images/bars/default_left.png);
+}
+
+#bar.default #bar-rg {
+	background: url(../images/bars/default_right.png);
+}
+
+/* Black */
+
+#bar.black {
+	background-color: black;
+	background-image: none;
+}
+
+#bar.black #bar-lf {
+	background: url(../images/bars/black_left.png);
+}
+
+#bar.black #bar-ct, #bar.black-translucent #bar-ct {
+    color: #bfbfbf;
+	text-shadow: none;
+}
+
+#bar.black #bar-rg {
+	background: url(../images/bars/black_right.png);
+}
+
+/* Transparent */
+
+#bar.black-translucent {
+    background-color: rgba(0,0,0,.8);
+}
+
+#bar.black-translucent #bar-lf {
+	background: url(../images/bars/transparent_left.png);
+}
+
+#bar.black-translucent #bar-rg {
+	background: url(../images/bars/transparent_right.png);
 }
 
 /* App
@@ -199,6 +271,10 @@ body {
 
 #app {
 	background: #333333;
+}
+
+#mask {
+	overflow: hidden;
 }
 
 /* iPad
@@ -211,7 +287,7 @@ body {
 
 #device.ipad #window {
 	-webkit-box-sizing: border-box;
-	background: url(../images/frame-ipad.png);
+	background: url(../images/frames/ipad.png);
 	height: 1108px;
 	padding: 42px;
 	width: 852px;
@@ -234,30 +310,39 @@ body {
 -----------------------------------------------------------------------------*/
 
 #device.iphone {
-	height: 716px;
-	width: 368px;
+	height: 744px;
+	width: 382px;
 }
 
 #device.iphone #window {
 	-webkit-box-sizing: border-box;
-	background: url(../images/frame-iphone.png);
-	height: 716px;
-	padding-top: 118px;
-	padding-right: 24px;
-	padding-left: 24px;
-	padding-bottom: 118px;
-	width: 368px;
+	
+	background: url(../images/frames/iphone4s.png);
+	-moz-background-size: 382px, 744px;
+	-webkit-background-size: 382px, 744px;
+	-o-background-size: 382px, 744px;
+	background-size: 382px, 744px;
+	
+	height: 744px;
+	width: 382px;
+	
+	padding: 132px 31px 132px 31px;
+}
+
+#device.iphone #mask {
+	height: 480px;
+	width: 320px;
 }
 
 #device.iphone [data-axis=r].portrait #content {
 	-webkit-transform: rotate(0deg) translateX(0px) translateY(0px);
 	-webkit-transition-delay: 350ms;
-	height: 460px;
+	height: 480px;
 	width: 320px;
 }
 
 #device.iphone [data-axis=r].landscape #content {
-	-webkit-transform: rotate(-90deg) translateX(-90px) translateY(-90px);
-	height: 300px;
+	-webkit-transform: rotate(-90deg) translateX(-80px) translateY(-80px);
+	height: 320px;
 	width: 480px;
 }

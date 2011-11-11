@@ -17,12 +17,14 @@
 			var defaultZoom = 'normal';
 			var defaultOrientation = 'portrait';
 			var defaultDevice = 'iphone';
+			var defaultBar = 'default';
 
 			var device = null;
 
 			var currentZoomOption = null;
 			var currentOrientationOption = null;
 			var currentDeviceOption = null;
+			var currentBarOption = null;
 
 			Selector.apply({
 
@@ -62,6 +64,16 @@
 					currentDeviceOption = el.getElement('[data-value=' + type + ']');
 					currentDeviceOption.addClass('current');
 					device.use(type);
+				},
+
+				/**
+				 * Define the default bar.
+				 */
+				'#device-bar': function(el) {
+					var bar = Cookie.read('bar') || defaultBar;
+					currentBarOption = el.getElement('[data-value=' + bar + ']');
+					currentBarOption.addClass('current');
+					device.bar(bar);
 				},
 
 				/**
@@ -121,6 +133,23 @@
 				},
 
 				/**
+				 * Change the status bar style. Once changed it will be saved in
+				 * cookies allowing the user to get back to this status bar
+				 * after refreshing the browser.
+				 */
+
+				'#device-bar .option::click': function(el) {
+					var type = el.get('data-value');
+					device.bar(type);
+					Cookie.write('bar', type);
+					
+					// update the buttons
+					currentBarOption.removeClass('current');
+					currentBarOption = el;
+					currentBarOption.addClass('current');
+				},
+
+				/**
 				 * Load an app. The app will be saved in cookies allowing the
 				 * user to get back to this app after refreshing the browser.
 				 */
@@ -143,6 +172,31 @@
 			});
 
 		})();
+        
+        window.addEvent('domready', function(){
+            var updateTime = function() {
+    			var currentTime = new Date()
+    			var hours = currentTime.getHours()
+    			var minutes = currentTime.getMinutes()
+			
+    			var suffix = "AM";
+    			if (hours >= 12) {
+    				suffix = "PM";
+    				hours = hours - 12;
+    			}
+    			if (hours == 0) {
+    				hours = 12;
+    			}
+			
+    			if (minutes < 10) {
+    				minutes = "0" + minutes;
+    			}
+			
+                document.id('bar-ct').set("html", hours + ":" + minutes + " " + suffix);
+    		}
+    		updateTime();
+    		setInterval(updateTime, 500);
+	    });
 
 	// "]]>
 	</script>
@@ -168,6 +222,12 @@
 					<span class="option" data-value="iphone">iPhone</span>
 					<span class="option" data-value="ipad">iPad</span>
 				</li>
+				<li id="device-bar">
+					Status Bar:
+					<span class="option" data-value="default">Default</span>
+					<span class="option" data-value="black">Black</span>
+					<span class="option" data-value="black-translucent">Transparent</span>
+				</li>
 				<li id="device-open">
 					Open
 					<!--
@@ -189,14 +249,16 @@
 			<div data-axis="r">
 
 				<div id="window">
-					<div id="content">
-						<div id="bar">
-							<div id="bar-lf"></div>
-							<div id="bar-ct"></div>
-							<div id="bar-rg"></div>
-						</div>
-						<div id="app">
-							<iframe id="loader" frameborder="0"></iframe>
+					<div id="mask">
+						<div id="content">
+							<div id="bar">
+								<div id="bar-lf"></div>
+								<div id="bar-ct">10:18 PM</div>
+								<div id="bar-rg"></div>
+							</div>
+							<div id="app">
+								<iframe id="loader" frameborder="0"></iframe>
+							</div>
 						</div>
 					</div>
 				</div>
