@@ -132,12 +132,28 @@ body {
 	-webkit-transition-duration: 350ms;
 }
 
-#device [data-axis=r].portrait	{ -webkit-transform: rotate(0deg);	}
-#device [data-axis=r].landscape { -webkit-transform: rotate(90deg); }
+/* Zoom */
 
-#device [data-axis=s].normal { -webkit-transform: translateY(0px)	 scale(1.00); }
-#device [data-axis=s].medium { -webkit-transform: translateY(-12.5%) scale(0.75); }
-#device [data-axis=s].small	 { -webkit-transform: translateY(-25%)	 scale(0.50); }
+#device [data-axis=s].original  { zoom: 100%; }
+#device [data-axis=s].retina    { zoom: 200%; }
+
+#loader {
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+#device [data-axis=s].retina #loader {
+    -webkit-transform: scale(2);
+    -webkit-transform-origin: 0 0;
+    width: 50%;
+    height: 50%;
+}
+
+/* Rotation */
+
+#device [data-axis=r].portrait  { -webkit-transform: rotate(0deg);  }
+#device [data-axis=r].landscape { -webkit-transform: rotate(90deg); }
 
 #device [data-axis=r].portrait #content {
 	-webkit-transform: rotate(0deg);
@@ -151,12 +167,6 @@ body {
 
 #device.animated [data-axis=r].landscape #content {
 	-webkit-transition-delay: 350ms;
-}
-
-#loader {
-	overflow: hidden;
-	width: 100%;
-	height: 100%;
 }
 
 /* Bar

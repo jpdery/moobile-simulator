@@ -3831,10 +3831,7 @@ Moobile.Device = new Class({
 	},
 
 	zoom: function(zoom) {
-		this.axis.s.removeClass('normal');
-		this.axis.s.removeClass('medium');
-		this.axis.s.removeClass('small');
-		this.axis.s.addClass(zoom);
+		this.axis.s.set('class', zoom);
 		return this;
 	},
 
