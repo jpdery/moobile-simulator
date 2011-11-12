@@ -128,7 +128,6 @@ body {
 #device.animated [data-axis=r],
 #device.animated #window,
 #device.animated #content,
-#device.animated #bar,
 #device.animated #app {
 	-webkit-transition-duration: 350ms;
 }
