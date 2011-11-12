@@ -108,6 +108,10 @@ body {
 	margin-right: auto;
 }
 
+#window {
+    position: relative;
+}
+
 #device [data-axis=s],
 #device [data-axis=r],
 #device #window,
@@ -327,6 +331,26 @@ body {
 	width: 382px;
 	
 	padding: 132px 31px 132px 31px;
+}
+
+#device.iphone #glare {
+    position: absolute;
+    top: 8px;
+    right: 6px;
+    z-index: 2000;
+    
+    background: url(../images/frames/iPhone_glare.png);
+    -moz-background-size: 360px, 726px;
+	-webkit-background-size: 360px, 726px;
+	-o-background-size: 360px, 726px;
+	background-size: 360px, 726px;
+	
+    width: 360px;
+    height: 726px;
+    
+    opacity: .5;
+    
+    pointer-events: none
 }
 
 #device.iphone #mask {
