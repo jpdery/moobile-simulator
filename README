@@ -1,2 +1,2 @@
 How to build:
-	./build Moobile-Simulator/* Core/* More/* Extras/* Class-Extras/* > UI/js/moobile-simulator.js 
+	./build Moobile-Simulator/* Core/* More/* Extras/* Class-Extras/* > js/moobile-simulator.js 
