@@ -1,2 +1,30 @@
-How to build:
+About
+-----
+
+This is a iOS simulator that you can use to view your websites on an iOS device.
+
+Use
+---
+
+You can see this code in action here: http://shelfworthy.github.com/moobile-simulator/
+
+All you need to do is click `open`  in the button bar and enter a full web address (include the http://).
+
+Because we can't set the user agent of the iframe used to load the site, you might also want to use an iOS user agent.
+
+Advantages over the xcode simulator
+-----------------------------------
+
+The xcode simulator is great for a lot of things, but it does have some downsides.
+
+- it requires you to install xcode
+- no web inspector
+- slightly more difficult to reload the current page
+
+
+How to build
+------------
+
+If you are working on the code, built the consolidated js file using the following command:
+
 	./build Moobile-Simulator/* Core/* More/* Extras/* Class-Extras/* > js/moobile-simulator.js 
