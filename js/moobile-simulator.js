@@ -3790,7 +3790,8 @@ Moobile.Device = new Class({
 
 	options: {
 		windowSelector: '#window',
-		loaderSelector: '#loader'
+		loaderSelector: '#loader',
+		barSelector: '#bar'
 	},
 
 	initialize: function(element, options) {
@@ -3798,6 +3799,7 @@ Moobile.Device = new Class({
 		this.element = document.id(element);
 		this.window = this.element.getElement(this.options.windowSelector);
 		this.loader = this.element.getElement(this.options.loaderSelector);
+		this.statusBar = this.element.getElement(this.options.barSelector);
 		this.axis.s = this.element.getElement('[data-axis=s]');
 		this.axis.r = this.element.getElement('[data-axis=r]');
 		this.pollForApplication();
@@ -3829,14 +3831,11 @@ Moobile.Device = new Class({
 	},
 
 	zoom: function(zoom) {
-		this.axis.s.removeClass('normal');
-		this.axis.s.removeClass('medium');
-		this.axis.s.removeClass('small');
-		this.axis.s.addClass(zoom);
+		this.axis.s.set('class', zoom);
 		return this;
 	},
 
-	orient: function(orientation) {
+	orient: function(orientation) {
 		this.axis.r.removeClass('portrait');
 		this.axis.r.removeClass('landscape');
 		this.axis.r.addClass(orientation);
@@ -3862,6 +3861,17 @@ Moobile.Device = new Class({
 		}
 
 		return this;
+	},
+
+	bar: function(type) {
+		this.statusBar.set('class', type);
+		
+		// show the site under the translucent bar
+		if (type == 'black-translucent') {
+			this.window.addClass('full-size');
+		} else {
+			this.window.removeClass('full-size');
+		}
 	},
 
 	pollForApplication: function() {
