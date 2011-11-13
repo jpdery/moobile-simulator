@@ -14,7 +14,7 @@
 
 		(function() {
 
-			var defaultZoom = 'normal';
+			var defaultZoom = 'original';
 			var defaultOrientation = 'portrait';
 			var defaultDevice = 'iphone';
 			var defaultBar = 'default';
@@ -208,9 +208,8 @@
 			<ul>
 				<li id="device-zoom">
 					Zoom:
-					<span class="option" data-value="normal">Normal</span>
-					<span class="option" data-value="medium">Medium</span>
-					<span class="option" data-value="small">Small</span>
+					<span class="option" data-value="original">1x (Original)</span>
+					<span class="option" data-value="retina">2x (Retina)</span>
 				</li>
 				<li id="device-orientation">
 					Orientation:
@@ -245,8 +244,8 @@
 
 		<div id="device">
 
-			<div data-axis="s">
 			<div data-axis="r">
+			<div data-axis="s">
 
 				<div id="window">
 				    <div id="glare"></div>

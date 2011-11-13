@@ -49,7 +49,7 @@ body {
 	display: inline;
 	font-size: 11px;
 	font-weight: normal;
-	padding: 3px;
+	padding: 3px 8px;
 }
 
 #nav > ul > li .option:hover {
@@ -109,7 +109,7 @@ body {
 }
 
 #window {
-    position: relative;
+	position: relative;
 }
 
 #device [data-axis=s],
@@ -132,12 +132,30 @@ body {
 	-webkit-transition-duration: 350ms;
 }
 
+/* Zoom */
+
+#device [data-axis=s].original	{ zoom: 100%; }
+#device [data-axis=s].retina	{ zoom: 200%; }
+
+#loader {
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+#device [data-axis=r].landscape [data-axis=s].retina #window { margin-top: -200px; }
+
+#device [data-axis=s].retina #loader {
+	-webkit-transform: scale(2);
+	-webkit-transform-origin: 0 0;
+	width: 50%;
+	height: 50%;
+}
+
+/* Rotation */
+
 #device [data-axis=r].portrait	{ -webkit-transform: rotate(0deg);	}
 #device [data-axis=r].landscape { -webkit-transform: rotate(90deg); }
-
-#device [data-axis=s].normal { -webkit-transform: translateY(0px)	 scale(1.00); }
-#device [data-axis=s].medium { -webkit-transform: translateY(-12.5%) scale(0.75); }
-#device [data-axis=s].small	 { -webkit-transform: translateY(-25%)	 scale(0.50); }
 
 #device [data-axis=r].portrait #content {
 	-webkit-transform: rotate(0deg);
@@ -153,28 +171,26 @@ body {
 	-webkit-transition-delay: 350ms;
 }
 
-#loader {
-	overflow: hidden;
-	width: 100%;
-	height: 100%;
-}
-
 /* Bar
 -----------------------------------------------------------------------------*/
 
 #bar {
-    position: relative;
-    
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 10;
+
 	display: block;
 	height: 20px;
 	width: 100%;
 }
 
 #bar #bar-lf {
-    position: absolute;
-    top: 0;
-    left: 0;
-    
+	position: absolute;
+	top: 0;
+	left: 0;
+	
 	width: 52px;
 	height: 20px;
 	
@@ -185,20 +201,20 @@ body {
 }
 
 #bar #bar-ct {
-    font-size: 14px;
-    font-family: HelveticaNeue-Bold, "Helvetica Neue Bold";
-    color: black;
+	font-size: 14px;
+	font-family: HelveticaNeue-Bold, "Helvetica Neue Bold";
+	color: black;
 	line-height: 18px;
-    text-align: center;
-    -webkit-font-smoothing: antialiased;
-    
-    text-shadow: 0px 1px 1px white;
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+	
+	text-shadow: 0px 1px 1px white;
 }
 
 #bar #bar-rg {
-    position: absolute;
-    top: 0;
-    right: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
 
 	width: 27px;
 	height: 20px;
@@ -207,13 +223,6 @@ body {
 	-webkit-background-size: 27px, 20px;
 	-o-background-size: 27px, 20px;
 	background-size: 27px, 20px;
-}
-
-#window.full-size #bar {
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: 0;
 }
 
 /* Default */
@@ -247,7 +256,7 @@ body {
 }
 
 #bar.black #bar-ct, #bar.black-translucent #bar-ct {
-    color: #bfbfbf;
+	color: #bfbfbf;
 	text-shadow: none;
 }
 
@@ -258,7 +267,7 @@ body {
 /* Transparent */
 
 #bar.black-translucent {
-    background-color: rgba(0,0,0,.8);
+	background-color: rgba(0,0,0,.8);
 }
 
 #bar.black-translucent #bar-lf {
@@ -273,8 +282,20 @@ body {
 -----------------------------------------------------------------------------*/
 
 #app {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
 	background: #333333;
 }
+
+/* when the bar is transparent, we should take up the whole window */
+.fullsize #app {
+    top: 0;
+}
+
 
 #mask {
 	overflow: hidden;
@@ -333,23 +354,23 @@ body {
 }
 
 #device.iphone #glare {
-    position: absolute;
-    top: 8px;
-    right: 6px;
-    z-index: 2000;
-    
-    background: url(../images/frames/iphone_glare.png);
-    -moz-background-size: 360px, 726px;
+	position: absolute;
+	top: 8px;
+	right: 6px;
+	z-index: 2000;
+	
+	background: url(../images/frames/iphone_glare.png);
+	-moz-background-size: 360px, 726px;
 	-webkit-background-size: 360px, 726px;
 	-o-background-size: 360px, 726px;
 	background-size: 360px, 726px;
 	
-    width: 360px;
-    height: 726px;
-    
-    opacity: .5;
-    
-    pointer-events: none
+	width: 360px;
+	height: 726px;
+	
+	opacity: .5;
+	
+	pointer-events: none
 }
 
 #device.iphone #mask {

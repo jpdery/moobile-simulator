@@ -3831,10 +3831,7 @@ Moobile.Device = new Class({
 	},
 
 	zoom: function(zoom) {
-		this.axis.s.removeClass('normal');
-		this.axis.s.removeClass('medium');
-		this.axis.s.removeClass('small');
-		this.axis.s.addClass(zoom);
+		this.axis.s.set('class', zoom);
 		return this;
 	},
 
@@ -3871,9 +3868,9 @@ Moobile.Device = new Class({
 		
 		// show the site under the translucent bar
 		if (type == 'black-translucent') {
-			this.window.addClass('full-size');
+			this.window.addClass('fullsize');
 		} else {
-			this.window.removeClass('full-size');
+			this.window.removeClass('fullsize');
 		}
 	},
 
