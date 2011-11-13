@@ -110,6 +110,13 @@
 					device.orient(orientation);
 					Cookie.write('orientation', orientation);
 
+					// make the button bar slow for this transition
+					$('buttonbar').setStyle('-webkit-transition-delay', '350ms');
+					(function() {
+						$('buttonbar').setStyle('-webkit-transition-delay', '0');
+					}).delay(355);
+					
+					
 					// update the buttons
 					currentOrientationOption.removeClass('current');
 					currentOrientationOption = el;
@@ -250,7 +257,7 @@
 			<div data-axis="s">
 
 				<div id="window">
-				    <div id="glare"></div>
+					<div id="glare"></div>
 					<div id="mask">
 						<div id="content">
 							<div id="bar">
