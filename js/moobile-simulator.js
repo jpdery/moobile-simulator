@@ -3868,9 +3868,16 @@ Moobile.Device = new Class({
 		
 		// show the site under the translucent bar
 		if (type == 'black-translucent') {
-			this.window.addClass('full-size');
+			this.window.addClass('fullsize');
 		} else {
-			this.window.removeClass('full-size');
+			this.window.removeClass('fullsize');
+		}
+		
+		// adjust for the button bar
+		if (type == 'browser') {
+			this.window.addClass('showbuttons');
+		} else {
+			this.window.removeClass('showbuttons');
 		}
 	},
 

@@ -110,6 +110,13 @@
 					device.orient(orientation);
 					Cookie.write('orientation', orientation);
 
+					// make the button bar slow for this transition
+					$('buttonbar').setStyle('-webkit-transition-delay', '350ms');
+					(function() {
+						$('buttonbar').setStyle('-webkit-transition-delay', '0');
+					}).delay(355);
+					
+					
 					// update the buttons
 					currentOrientationOption.removeClass('current');
 					currentOrientationOption = el;
@@ -222,7 +229,9 @@
 					<span class="option" data-value="ipad">iPad</span>
 				</li>
 				<li id="device-bar">
-					Status Bar:
+					Browser:
+					<span class="option" data-value="browser">Default</span>
+					Installed:
 					<span class="option" data-value="default">Default</span>
 					<span class="option" data-value="black">Black</span>
 					<span class="option" data-value="black-translucent">Transparent</span>
@@ -248,7 +257,7 @@
 			<div data-axis="s">
 
 				<div id="window">
-				    <div id="glare"></div>
+					<div id="glare"></div>
 					<div id="mask">
 						<div id="content">
 							<div id="bar">
@@ -259,6 +268,7 @@
 							<div id="app">
 								<iframe id="loader" frameborder="0"></iframe>
 							</div>
+							<div id="buttonbar"></div>
 						</div>
 					</div>
 				</div>

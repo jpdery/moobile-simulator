@@ -109,14 +109,15 @@ body {
 }
 
 #window {
-    position: relative;
+	position: relative;
 }
 
 #device [data-axis=s],
 #device [data-axis=r],
 #device #window,
 #device #content,
-#device #app {
+#device #app,
+#device #buttonbar {
 	-webkit-transform-origin: 50% 50%;
 	-webkit-transition-property: all;
 	-webkit-transition-duration: 0ms;
@@ -128,14 +129,15 @@ body {
 #device.animated [data-axis=r],
 #device.animated #window,
 #device.animated #content,
-#device.animated #app {
+#device.animated #app,
+#device #buttonbar {
 	-webkit-transition-duration: 350ms;
 }
 
 /* Zoom */
 
-#device [data-axis=s].original  { zoom: 100%; }
-#device [data-axis=s].retina    { zoom: 200%; }
+#device [data-axis=s].original	{ zoom: 100%; }
+#device [data-axis=s].retina	{ zoom: 200%; }
 
 #loader {
 	overflow: hidden;
@@ -146,15 +148,15 @@ body {
 #device [data-axis=r].landscape [data-axis=s].retina #window { margin-top: -200px; }
 
 #device [data-axis=s].retina #loader {
-    -webkit-transform: scale(2);
-    -webkit-transform-origin: 0 0;
-    width: 50%;
-    height: 50%;
+	-webkit-transform: scale(2);
+	-webkit-transform-origin: 0 0;
+	width: 50%;
+	height: 50%;
 }
 
 /* Rotation */
 
-#device [data-axis=r].portrait  { -webkit-transform: rotate(0deg);  }
+#device [data-axis=r].portrait	{ -webkit-transform: rotate(0deg);	}
 #device [data-axis=r].landscape { -webkit-transform: rotate(90deg); }
 
 #device [data-axis=r].portrait #content {
@@ -175,18 +177,22 @@ body {
 -----------------------------------------------------------------------------*/
 
 #bar {
-    position: relative;
-    
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 10;
+
 	display: block;
 	height: 20px;
 	width: 100%;
 }
 
 #bar #bar-lf {
-    position: absolute;
-    top: 0;
-    left: 0;
-    
+	position: absolute;
+	top: 0;
+	left: 0;
+	
 	width: 52px;
 	height: 20px;
 	
@@ -197,20 +203,20 @@ body {
 }
 
 #bar #bar-ct {
-    font-size: 14px;
-    font-family: HelveticaNeue-Bold, "Helvetica Neue Bold";
-    color: black;
+	font-size: 14px;
+	font-family: HelveticaNeue-Bold, "Helvetica Neue Bold";
+	color: black;
 	line-height: 18px;
-    text-align: center;
-    -webkit-font-smoothing: antialiased;
-    
-    text-shadow: 0px 1px 1px white;
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+	
+	text-shadow: 0px 1px 1px white;
 }
 
 #bar #bar-rg {
-    position: absolute;
-    top: 0;
-    right: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
 
 	width: 27px;
 	height: 20px;
@@ -221,16 +227,9 @@ body {
 	background-size: 27px, 20px;
 }
 
-#window.full-size #bar {
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: 0;
-}
-
 /* Default */
 
-#bar.default {
+#bar.default, #bar.browser {
 	background: url(../images/bars/default_bg.png) repeat-x;
 	
 	-moz-background-size: 1px, 20px;
@@ -239,11 +238,11 @@ body {
 	background-size: 1px, 20px;
 }
 
-#bar.default #bar-lf {
+#bar.default #bar-lf, #bar.browser #bar-lf {
 	background: url(../images/bars/default_left.png);
 }
 
-#bar.default #bar-rg {
+#bar.default #bar-rg, #bar.browser #bar-rg{
 	background: url(../images/bars/default_right.png);
 }
 
@@ -259,7 +258,7 @@ body {
 }
 
 #bar.black #bar-ct, #bar.black-translucent #bar-ct {
-    color: #bfbfbf;
+	color: #bfbfbf;
 	text-shadow: none;
 }
 
@@ -270,7 +269,7 @@ body {
 /* Transparent */
 
 #bar.black-translucent {
-    background-color: rgba(0,0,0,.8);
+	background-color: rgba(0,0,0,.8);
 }
 
 #bar.black-translucent #bar-lf {
@@ -281,11 +280,34 @@ body {
 	background: url(../images/bars/transparent_right.png);
 }
 
+/* Buttons
+-----------------------------------------------------------------------------*/
+
+#buttonbar {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
+    height: 0;
+}
+
 /* App
 -----------------------------------------------------------------------------*/
 
 #app {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
 	background: #333333;
+}
+
+/* when the bar is transparent, we should take up the whole window */
+.fullsize #app {
+    top: 0;
 }
 
 #mask {
@@ -345,28 +367,64 @@ body {
 }
 
 #device.iphone #glare {
-    position: absolute;
-    top: 8px;
-    right: 6px;
-    z-index: 2000;
-    
-    background: url(../images/frames/iphone_glare.png);
-    -moz-background-size: 360px, 726px;
+	position: absolute;
+	top: 8px;
+	right: 6px;
+	z-index: 2000;
+	
+	background: url(../images/frames/iphone_glare.png);
+	-moz-background-size: 360px, 726px;
 	-webkit-background-size: 360px, 726px;
 	-o-background-size: 360px, 726px;
 	background-size: 360px, 726px;
 	
-    width: 360px;
-    height: 726px;
-    
-    opacity: .5;
-    
-    pointer-events: none
+	width: 360px;
+	height: 726px;
+	
+	opacity: .5;
+	
+	pointer-events: none
 }
 
 #device.iphone #mask {
 	height: 480px;
 	width: 320px;
+}
+
+#device.iphone [data-axis=r].portrait #buttonbar {
+    background: url(../images/frames/iphone_p_buttons.png);
+	-moz-background-size: 320px, 44px;
+	-webkit-background-size: 320px, 44px;
+	-o-background-size: 320px, 44px;
+	background-size: 320px, 44px;
+	
+	width: 320px;
+}
+
+#device.iphone [data-axis=r].portrait .showbuttons #buttonbar {
+	height: 44px;
+}
+
+#device.iphone [data-axis=r].portrait .showbuttons #app {
+    bottom: 44px;
+}
+
+#device.iphone [data-axis=r].landscape #buttonbar {
+    background: url(../images/frames/iphone_l_buttons.png);
+	-moz-background-size: 480px, 32px;
+	-webkit-background-size: 480px, 32px;
+	-o-background-size: 480px, 32px;
+	background-size: 480px, 32px;
+	
+	width: 480px;
+}
+
+#device.iphone [data-axis=r].landscape .showbuttons #buttonbar {
+	height: 32px;
+}
+
+#device.iphone [data-axis=r].landscape .showbuttons #app {
+    bottom: 32px;
 }
 
 #device.iphone [data-axis=r].portrait #content {
