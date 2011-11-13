@@ -116,7 +116,8 @@ body {
 #device [data-axis=r],
 #device #window,
 #device #content,
-#device #app {
+#device #app,
+#device #buttonbar {
 	-webkit-transform-origin: 50% 50%;
 	-webkit-transition-property: all;
 	-webkit-transition-duration: 0ms;
@@ -128,7 +129,8 @@ body {
 #device.animated [data-axis=r],
 #device.animated #window,
 #device.animated #content,
-#device.animated #app {
+#device.animated #app,
+#device #buttonbar {
 	-webkit-transition-duration: 350ms;
 }
 
@@ -227,7 +229,7 @@ body {
 
 /* Default */
 
-#bar.default {
+#bar.default, #bar.browser {
 	background: url(../images/bars/default_bg.png) repeat-x;
 	
 	-moz-background-size: 1px, 20px;
@@ -236,11 +238,11 @@ body {
 	background-size: 1px, 20px;
 }
 
-#bar.default #bar-lf {
+#bar.default #bar-lf, #bar.browser #bar-lf {
 	background: url(../images/bars/default_left.png);
 }
 
-#bar.default #bar-rg {
+#bar.default #bar-rg, #bar.browser #bar-rg{
 	background: url(../images/bars/default_right.png);
 }
 
@@ -278,6 +280,20 @@ body {
 	background: url(../images/bars/transparent_right.png);
 }
 
+/* Buttons
+-----------------------------------------------------------------------------*/
+
+#buttonbar {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
+    height: 0;
+    
+    -webkit-transition-delay: 350ms;
+}
+
 /* App
 -----------------------------------------------------------------------------*/
 
@@ -295,7 +311,6 @@ body {
 .fullsize #app {
     top: 0;
 }
-
 
 #mask {
 	overflow: hidden;
@@ -376,6 +391,42 @@ body {
 #device.iphone #mask {
 	height: 480px;
 	width: 320px;
+}
+
+#device.iphone [data-axis=r].portrait #buttonbar {
+    background: url(../images/frames/iphone_p_buttons.png);
+	-moz-background-size: 320px, 44px;
+	-webkit-background-size: 320px, 44px;
+	-o-background-size: 320px, 44px;
+	background-size: 320px, 44px;
+	
+	width: 320px;
+}
+
+#device.iphone [data-axis=r].portrait .showbuttons #buttonbar {
+	height: 44px;
+}
+
+#device.iphone [data-axis=r].portrait .showbuttons #app {
+    bottom: 44px;
+}
+
+#device.iphone [data-axis=r].landscape #buttonbar {
+    background: url(../images/frames/iphone_l_buttons.png);
+	-moz-background-size: 480px, 32px;
+	-webkit-background-size: 480px, 32px;
+	-o-background-size: 480px, 32px;
+	background-size: 480px, 32px;
+	
+	width: 480px;
+}
+
+#device.iphone [data-axis=r].landscape .showbuttons #buttonbar {
+	height: 32px;
+}
+
+#device.iphone [data-axis=r].landscape .showbuttons #app {
+    bottom: 32px;
 }
 
 #device.iphone [data-axis=r].portrait #content {

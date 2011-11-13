@@ -3872,6 +3872,13 @@ Moobile.Device = new Class({
 		} else {
 			this.window.removeClass('fullsize');
 		}
+		
+		// adjust for the button bar
+		if (type == 'browser') {
+			this.window.addClass('showbuttons');
+		} else {
+			this.window.removeClass('showbuttons');
+		}
 	},
 
 	pollForApplication: function() {
